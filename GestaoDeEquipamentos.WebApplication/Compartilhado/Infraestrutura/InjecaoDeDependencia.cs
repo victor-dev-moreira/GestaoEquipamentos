@@ -1,4 +1,5 @@
-using GestaoDeEquipamentos.WebApp.Compartilhado.Infraestrutura.Arquivos;
+using GestaoDeEquipamentos.WebApplication.Compartilhado.Infraestrutura.Arquivos;
+using GestaoDeEquipamentos.WebApplication.Modulos.Fabricantes.Infraestrutura;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 namespace GestaoDeEquipamentos.WebApplication.Compartilhado.Infraestrutura;
@@ -17,5 +18,6 @@ public static class InjecaoDeDependencia
         });
 
         // Configurar Repositorios
+        services.AddScoped<RepositorioFabricanteEmArquivo>();
     }
 }

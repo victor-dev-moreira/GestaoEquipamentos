@@ -1,5 +1,5 @@
 using GestaoDeEquipamentos.WebApplication.Compartilhado.Dominio;
-namespace GestaoDeEquipamentos.WebApp.Compartilhado.Infraestrutura.Arquivos;
+namespace GestaoDeEquipamentos.WebApplication.Compartilhado.Infraestrutura.Arquivos;
 
 public abstract class RepositorioBaseEmArquivo<TEntidade> where TEntidade : EntidadeBase
 {
