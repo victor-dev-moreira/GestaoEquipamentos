@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using GestaoDeEquipamentos.WebApplication.Modulos.Equipamentos.Dominio;
 using GestaoDeEquipamentos.WebApplication.Modulos.Fabricantes.Dominio;
 
 namespace GestaoDeEquipamentos.WebApplication.Compartilhado.Infraestrutura.Arquivos;
@@ -7,10 +8,8 @@ namespace GestaoDeEquipamentos.WebApplication.Compartilhado.Infraestrutura.Arqui
 public class ContextoJson
 {
     private readonly string caminhoArquivoDados;
-
     public List<Fabricante> Fabricantes { get; set; } = new List<Fabricante>();
-
-    // public List<Fornecedor> Fornecedores { get; set; } = [];
+    public List<Equipamento> Equipamentos { get; set; } = new List<Equipamento>();
 
     public ContextoJson()
     {
@@ -62,6 +61,7 @@ public class ContextoJson
     private void Carregar(ContextoJson contexto)
     {
         Fabricantes = contexto.Fabricantes;
+        Equipamentos = contexto.Equipamentos;
     }
 
     public ContextoJson CarregarDadosPredefinidos()
@@ -78,6 +78,6 @@ public class ContextoJson
 
     private bool PossuiDados()
     {
-        return Fabricantes.Count > 0;
+        return Fabricantes.Count > 0 || Equipamentos.Count > 0;
     }
 }
