@@ -17,7 +17,7 @@ public class ContextoJson
     {
         string caminhoAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-        string caminhoDiretorioAplicativo = Path.Join(caminhoAppData, "ControleDeMedicamentos-Backend");
+        string caminhoDiretorioAplicativo = Path.Join(caminhoAppData, "GestaoDeEquipamentos-Backend");
 
         Directory.CreateDirectory(caminhoDiretorioAplicativo);
 
