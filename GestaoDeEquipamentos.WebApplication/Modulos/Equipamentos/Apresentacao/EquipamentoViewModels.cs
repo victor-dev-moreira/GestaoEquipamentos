@@ -45,7 +45,8 @@ public record EditarEquipamentoViewModel
     string? Nome,
 
     [Required(ErrorMessage = "O campo \"Preço de aquisição\" é obrigatório.")]
-    [Range(typeof(decimal), "0,01", "79228162514264337593543950335",
+    [Range(typeof(decimal), "0.01", "79228162514264337593543950335",
+    ParseLimitsInInvariantCulture = true,
         ErrorMessage = "O campo \"Preço de aquisição\" deve ser maior que zero.")]
     decimal? PrecoAquisicao,
 
