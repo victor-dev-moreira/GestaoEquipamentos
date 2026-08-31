@@ -20,7 +20,9 @@ app.Use(async (context, next) =>
     catch (Exception ex)
     {
         app.Logger.LogError(ex, "Erro não tratado em {Path}", context.Request.Path);
-        throw;
+
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        await context.Response.WriteAsync(ex.ToString());
     }
 });
 
