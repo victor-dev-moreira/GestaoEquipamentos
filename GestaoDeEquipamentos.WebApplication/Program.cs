@@ -11,6 +11,19 @@ builder.Services.AdicionarCamadaDeApresentacao();
 
 var app = builder.Build();
 
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Erro não tratado em {Path}", context.Request.Path);
+        throw;
+    }
+});
+
 // Middlewares
 app.UseRouting();
 app.MapDefaultControllerRoute();
