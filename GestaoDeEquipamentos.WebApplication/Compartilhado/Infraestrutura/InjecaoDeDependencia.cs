@@ -1,4 +1,5 @@
 using GestaoDeEquipamentos.WebApplication.Compartilhado.Infraestrutura.Arquivos;
+using GestaoDeEquipamentos.WebApplication.Modulos.Chamados.Infraestrutura;
 using GestaoDeEquipamentos.WebApplication.Modulos.Equipamentos.Infraestrutura;
 using GestaoDeEquipamentos.WebApplication.Modulos.Fabricantes.Infraestrutura;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
@@ -21,5 +22,6 @@ public static class InjecaoDeDependencia
         // Configurar Repositorios
         services.AddScoped<RepositorioFabricanteEmArquivo>();
         services.AddScoped<RepositorioEquipamentoEmArquivo>();
+        services.AddScoped<RepositorioChamadoEmArquivo>();
     }
 }

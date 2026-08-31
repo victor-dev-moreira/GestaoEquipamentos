@@ -1,0 +1,53 @@
+@model EditarChamadoViewModel
+
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Edição de Chamado";
+}
+
+
+<div class="row justify-content-start">
+    <form class="col-lg-6" asp-action="Editar" method="post">
+        <div>
+            <label class="form-label" asp-for="Titulo">Título</label>
+            <input class="form-control" asp-for="Titulo" type="text">
+            <span class="text-danger" asp-validation-for="Titulo"></span>
+        </div>
+
+        <div class="mt-4">
+            <label class="form-label" asp-for="Descricao">Descrição</label>
+            <input class="form-control" asp-for="Descricao" type="text">
+            <span class="text-danger" asp-validation-for="Descricao"></span>
+        </div>
+
+        <div class="mt-4">
+            <label class="form-label" asp-for="DataAbertura">Data de Abertura</label>
+            <input class="form-control" asp-for="DataAbertura" value="@Model.DataAbertura" type="date">
+            <span class="text-danger" asp-validation-for="DataAbertura"></span>
+        </div>
+
+        <div class="mt-4">
+            <label asp-for="EquipamentoId">Equipamento</label>
+            <select class="form-select form-select-lg mb-3" name="EquipamentoId" id="EquipamentoId">
+                <option selected value="">Selecione Equipamento</option>
+                @foreach (EquipamentoChamadoViewModel f in Model.EquipamentosDisponiveis)
+                {
+                    <option value="@f.Id">@f.Titulo</option>
+                }
+
+            </select>
+
+        </div>
+
+        <div class="d-flex gap-3 mt-4">
+            <button class="btn btn-primary" type="submit">
+                <i class="bi bi-check"></i>
+                Cadastrar
+            </button>
+            <a class="btn btn-outline-secondary" asp-action="Listar">
+                <i class="bi bi-arrow-return-left"></i>
+                Voltar para a lista
+            </a>
+        </div>
+    </form>
+</div>

@@ -1,54 +1,54 @@
-@model List<ListarEquipamentoViewModel>
+@model List<ListarChamadoViewModel>
 
 @{
     Layout = "_Layout";
-    ViewBag.Titulo = "Listagem de Equipamentos";
+    ViewBag.Titulo = "Listagem de Chamados";
 }
 
 <p>
     <a class="btn btn-primary" asp-action="Cadastrar">
         <i class="bi bi-patch-plus"></i>
-        Cadastrar Equipamento
+        Cadastrar Chamado
     </a>
 </p>
 
 @if (Model.Count == 0)
 {
     <div class="alert alert-warning col-6" role="alert">
-        Não há nenhum equipamento registrado.
+        Não há nenhum chamado registrado.
     </div>
 }
 else
 {
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mt-4">
-        @foreach (ListarEquipamentoViewModel equipamento in Model)
+        @foreach (ListarChamadoViewModel chamado in Model)
         {
             <div class="col">
                 <div class="card h-100">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h5>@equipamento.Nome</h5>
-                            <span class="badge text-bg-secondary">@equipamento.Id</span>
+                            <h5>@chamado.Titulo</h5>
+                            <span class="badge text-bg-secondary">@chamado.Id</span>
                         </div>
 
                         <dl class="row mb-2">
-                            <dt class="col-sm-4">Preço</dt>
-                            <dd class="col-sm-8">@equipamento.PrecoAquisicao.ToString(format: "C2")</dd>
+                            <dt class="col-sm-4">Descrição</dt>
+                            <dd class="col-sm-8">@chamado.Descricao</dd>
 
-                            <dt class="col-sm-4">Fabricante</dt>
-                            <dd class="col-sm-8">@equipamento.Fabricante.Nome</dd>
+                            <dt class="col-sm-4">Equipamento</dt>
+                            <dd class="col-sm-8">@chamado.Equipamento.Nome</dd>
 
                             <dt class="col-sm-4">Fabricação</dt>
-                            <dd class="col-sm-8">@equipamento.DataFabricacao.ToString(format: "dd/MM/yyyy")</dd>
+                            <dd class="col-sm-8">@chamado.DataAbertura.ToString(format: "dd/MM/yyyy")</dd>
                         </dl>
                         <div class="d-flex gap-2 justify-content-end mt-auto">
                             <a class="btn btn-sm btn-outline-primary" title="Editar" asp-action="Editar"
-                               asp-route-id="@equipamento.Id">
+                               asp-route-id="@chamado.Id">
                                 <i class="bi bi-pencil"></i>
                             </a>
 
                             <a class="btn btn-sm btn-outline-danger" title="Excluir" asp-action="Excluir"
-                               asp-route-id="@equipamento.Id">
+                               asp-route-id="@chamado.Id">
                                 <i class="bi bi-trash3"></i>
                             </a>
                         </div>
