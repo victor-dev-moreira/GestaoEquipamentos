@@ -1,5 +1,7 @@
 using GestaoDeEquipamentos.WebApplication.Compartilhado.Dominio;
 
+namespace GestaoDeEquipamentos.WebApplication.Modulos.Fabricantes.Dominio;
+
 public sealed class Fabricante : EntidadeBase
 {
     public string Nome { get; set; } = string.Empty;

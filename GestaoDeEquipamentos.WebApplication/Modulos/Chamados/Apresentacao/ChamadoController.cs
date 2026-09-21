@@ -7,9 +7,9 @@ namespace GestaoDeEquipamentos.WebApplication.Modulos.Chamados.Apresentacao;
 
 public sealed class ChamadoController : Controller
 {
-    private readonly RepositorioChamadoEmArquivo repositorioChamado;
-    private readonly RepositorioEquipamentoEmArquivo repositorioEquipamento;
-    public ChamadoController(RepositorioChamadoEmArquivo repositorioChamado, RepositorioEquipamentoEmArquivo repositorioEquipamento)
+    private readonly IRepositorioChamado repositorioChamado;
+    private readonly IRepositorioEquipamento repositorioEquipamento;
+    public ChamadoController(IRepositorioChamado repositorioChamado, IRepositorioEquipamento repositorioEquipamento)
     {
         this.repositorioChamado = repositorioChamado;
         this.repositorioEquipamento = repositorioEquipamento;

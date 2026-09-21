@@ -3,9 +3,9 @@ namespace GestaoDeEquipamentos.WebApplication.Modulos.Fabricantes.Dominio;
 
 public interface IRepositorioFabricante
 {
-    void Cadastrar(Equipamento novoRegistro);
-    bool Editar(int idSelecionado, Equipamento entidadeAtualizada);
+    void Cadastrar(Fabricante novoRegistro);
+    bool Editar(int idSelecionado, Fabricante entidadeAtualizada);
     bool Excluir(int idSelecionado);
-    Equipamento? SelecionarPorId(int idSelecionado);
-    List<Equipamento> SelecionarTodos();
+    Fabricante? SelecionarPorId(int idSelecionado);
+    List<Fabricante> SelecionarTodos();
 }

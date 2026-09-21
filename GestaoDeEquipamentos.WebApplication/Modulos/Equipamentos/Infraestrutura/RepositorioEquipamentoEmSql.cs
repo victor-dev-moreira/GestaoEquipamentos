@@ -1,5 +1,6 @@
 using Dapper;
 using GestaoDeEquipamentos.WebApplication.Modulos.Equipamentos.Dominio;
+using GestaoDeEquipamentos.WebApplication.Modulos.Fabricantes.Dominio;
 using Microsoft.Data.SqlClient;
 
 namespace GestaoDeEquipamentos.WebApplication.Modulos.Equipamentos.Infraestrutura;
@@ -80,6 +81,7 @@ public sealed class RepositorioEquipamentoEmSql : IRepositorioEquipamento
                 e.PrecoAquisicao,
                 e.DataFabricacao,
                 e.FabricanteId,
+                f.Id,
                 f.Nome,
                 f.Email,
                 f.Telefone
@@ -92,7 +94,8 @@ public sealed class RepositorioEquipamentoEmSql : IRepositorioEquipamento
         return conexao.Query<Equipamento, Fabricante, Equipamento>(
             query,
             MapearEquipamentoCompleto,
-            new { Id = idSelecionado }
+            new { Id = idSelecionado },
+            splitOn: "Id"
         ).SingleOrDefault();
     }
 
@@ -106,6 +109,7 @@ public sealed class RepositorioEquipamentoEmSql : IRepositorioEquipamento
                 e.PrecoAquisicao,
                 e.DataFabricacao,
                 e.FabricanteId,
+                f.Id,
                 f.Nome,
                 f.Email,
                 f.Telefone
@@ -117,7 +121,8 @@ public sealed class RepositorioEquipamentoEmSql : IRepositorioEquipamento
 
         return conexao.Query<Equipamento, Fabricante, Equipamento>(
             query,
-            MapearEquipamentoCompleto
+            MapearEquipamentoCompleto,
+            splitOn: "Id"
         ).ToList();
     }
 
@@ -129,5 +134,10 @@ public sealed class RepositorioEquipamentoEmSql : IRepositorioEquipamento
         equipamento.Fabricante = fabricante;
 
         return equipamento;
+    }
+
+    public bool ExisteParaFabricante(int fabricanteId)
+    {
+        throw new NotImplementedException();
     }
 }

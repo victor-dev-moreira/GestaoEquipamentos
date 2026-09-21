@@ -60,7 +60,7 @@ public sealed class EquipamentoController : Controller
     [HttpPost]
     public ActionResult Cadastrar(CadastrarEquipamentoViewModel cadastrarVm)
     {
-        Fabricantes.Dominio.Equipamento? fabricante = repositorioFabricante.SelecionarPorId(cadastrarVm.FabricanteId);
+        Fabricante? fabricante = repositorioFabricante.SelecionarPorId(cadastrarVm.FabricanteId);
 
         if (fabricante == null)
             ModelState.AddModelError(nameof(cadastrarVm.FabricanteId), "Selecione um fabricante válido");
@@ -111,7 +111,7 @@ public sealed class EquipamentoController : Controller
 
     public ActionResult Editar(int id, EditarEquipamentoViewModel viewModel)
     {
-        Fabricantes.Dominio.Equipamento? fabricante = repositorioFabricante.SelecionarPorId(viewModel.FabricanteId);
+        Fabricante? fabricante = repositorioFabricante.SelecionarPorId(viewModel.FabricanteId);
 
         if (fabricante == null)
             ModelState.AddModelError(nameof(viewModel.FabricanteId), "Selecione um fabricante válido.");
@@ -172,7 +172,7 @@ public sealed class EquipamentoController : Controller
     {
         List<FabricanteEquipamentoViewModel> fabricantes = [];
 
-        foreach (Fabricantes.Dominio.Equipamento fabricante in repositorioFabricante.SelecionarTodos())
+        foreach (Fabricante fabricante in repositorioFabricante.SelecionarTodos())
         {
             FabricanteEquipamentoViewModel viewModelFabricante = new FabricanteEquipamentoViewModel(
                 fabricante.Id,
