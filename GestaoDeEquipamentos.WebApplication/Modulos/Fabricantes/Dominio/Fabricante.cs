@@ -1,14 +1,14 @@
 using GestaoDeEquipamentos.WebApplication.Compartilhado.Dominio;
-namespace GestaoDeEquipamentos.WebApplication.Modulos.Fabricantes.Dominio;
 
 public sealed class Fabricante : EntidadeBase
 {
     public string Nome { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Telefone { get; set; } = string.Empty;
+
     public Fabricante() { }
 
-    public Fabricante(string nome, string email, string telefone)
+    public Fabricante(string nome, string email, string telefone) : this()
     {
         Nome = nome;
         Email = email;

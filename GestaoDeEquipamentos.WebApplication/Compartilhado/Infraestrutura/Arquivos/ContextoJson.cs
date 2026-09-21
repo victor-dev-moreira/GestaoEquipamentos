@@ -9,8 +9,8 @@ namespace GestaoDeEquipamentos.WebApplication.Compartilhado.Infraestrutura.Arqui
 public class ContextoJson
 {
     private readonly string caminhoArquivoDados;
-    public List<Fabricante> Fabricantes { get; set; } = new List<Fabricante>();
-    public List<Equipamento> Equipamentos { get; set; } = new List<Equipamento>();
+    public List<Modulos.Fabricantes.Dominio.Equipamento> Fabricantes { get; set; } = new List<Modulos.Fabricantes.Dominio.Equipamento>();
+    public List<Modulos.Equipamentos.Dominio.Equipamento> Equipamentos { get; set; } = new List<Modulos.Equipamentos.Dominio.Equipamento>();
     public List<Chamado> Chamados { get; set; } = new List<Chamado>();
 
     public ContextoJson()
@@ -71,9 +71,9 @@ public class ContextoJson
     {
         ContextoJson contextoPredefinido = new ContextoJson();
 
-        contextoPredefinido.Fabricantes.AddRange(new List<Fabricante>
+        contextoPredefinido.Fabricantes.AddRange(new List<Modulos.Fabricantes.Dominio.Equipamento>
         {
-            new Fabricante("CR Vasco Da Gama", "contato@vascodagama.com.br", "(11) 1111-1111") {Id = 1}
+            new Modulos.Fabricantes.Dominio.Equipamento("CR Vasco Da Gama", "contato@vascodagama.com.br", "(11) 1111-1111") { Id = 1}
         });
 
         return contextoPredefinido;

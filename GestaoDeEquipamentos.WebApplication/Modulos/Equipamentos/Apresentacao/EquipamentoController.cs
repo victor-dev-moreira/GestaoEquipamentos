@@ -7,9 +7,11 @@ namespace GestaoDeEquipamentos.WebApplication.Modulos.Equipamentos.Apresentacao;
 
 public sealed class EquipamentoController : Controller
 {
-    private readonly RepositorioEquipamentoEmArquivo repositorio;
-    private readonly RepositorioFabricanteEmArquivo repositorioFabricante;
-    public EquipamentoController(RepositorioEquipamentoEmArquivo repositorio, RepositorioFabricanteEmArquivo repositorioFabricante)
+    private readonly IRepositorioEquipamento repositorio;
+    private readonly IRepositorioFabricante repositorioFabricante;
+    public EquipamentoController(
+        IRepositorioEquipamento repositorio,
+        IRepositorioFabricante repositorioFabricante)
     {
         this.repositorio = repositorio;
         this.repositorioFabricante = repositorioFabricante;
@@ -18,10 +20,10 @@ public sealed class EquipamentoController : Controller
     [HttpGet]
     public ActionResult Listar()
     {
-        List<Equipamento> equipamentos = repositorio.SelecionarTodos();
+        List<Dominio.Equipamento> equipamentos = repositorio.SelecionarTodos();
         List<ListarEquipamentoViewModel> viewModels = new List<ListarEquipamentoViewModel>();
 
-        foreach (Equipamento equipamento in equipamentos)
+        foreach (Dominio.Equipamento equipamento in equipamentos)
         {
             ListarEquipamentoViewModel vm = new ListarEquipamentoViewModel(
                 equipamento.Id,
@@ -58,7 +60,7 @@ public sealed class EquipamentoController : Controller
     [HttpPost]
     public ActionResult Cadastrar(CadastrarEquipamentoViewModel cadastrarVm)
     {
-        Fabricante? fabricante = repositorioFabricante.SelecionarPorId(cadastrarVm.FabricanteId);
+        Fabricantes.Dominio.Equipamento? fabricante = repositorioFabricante.SelecionarPorId(cadastrarVm.FabricanteId);
 
         if (fabricante == null)
             ModelState.AddModelError(nameof(cadastrarVm.FabricanteId), "Selecione um fabricante válido");
@@ -72,7 +74,7 @@ public sealed class EquipamentoController : Controller
             return View(cadastrarVm);
         }
 
-        Equipamento equipamento = new Equipamento(
+        Dominio.Equipamento equipamento = new Dominio.Equipamento(
             cadastrarVm.Nome ?? string.Empty,
             cadastrarVm.PrecoAquisicao.GetValueOrDefault(),
             cadastrarVm.DataFabricacao.GetValueOrDefault(),
@@ -88,7 +90,7 @@ public sealed class EquipamentoController : Controller
 
     public ActionResult Editar(int id)
     {
-        Equipamento? equipamento = repositorio.SelecionarPorId(id);
+        Dominio.Equipamento? equipamento = repositorio.SelecionarPorId(id);
 
         if (equipamento == null)
             return NotFound();
@@ -109,7 +111,7 @@ public sealed class EquipamentoController : Controller
 
     public ActionResult Editar(int id, EditarEquipamentoViewModel viewModel)
     {
-        Fabricante? fabricante = repositorioFabricante.SelecionarPorId(viewModel.FabricanteId);
+        Fabricantes.Dominio.Equipamento? fabricante = repositorioFabricante.SelecionarPorId(viewModel.FabricanteId);
 
         if (fabricante == null)
             ModelState.AddModelError(nameof(viewModel.FabricanteId), "Selecione um fabricante válido.");
@@ -124,7 +126,7 @@ public sealed class EquipamentoController : Controller
             return View(viewModel);
         }
 
-        Equipamento equipamentoAtualizado = new(
+        Dominio.Equipamento equipamentoAtualizado = new(
             viewModel.Nome ?? string.Empty,
             viewModel.PrecoAquisicao.GetValueOrDefault(),
             viewModel.DataFabricacao.GetValueOrDefault(),
@@ -142,7 +144,7 @@ public sealed class EquipamentoController : Controller
     [HttpGet]
     public ActionResult Excluir(int id)
     {
-        Equipamento? equipamentoSelecionado = repositorio.SelecionarPorId(id);
+        Dominio.Equipamento? equipamentoSelecionado = repositorio.SelecionarPorId(id);
 
         if (equipamentoSelecionado == null)
             return NotFound();
@@ -170,7 +172,7 @@ public sealed class EquipamentoController : Controller
     {
         List<FabricanteEquipamentoViewModel> fabricantes = [];
 
-        foreach (Fabricante fabricante in repositorioFabricante.SelecionarTodos())
+        foreach (Fabricantes.Dominio.Equipamento fabricante in repositorioFabricante.SelecionarTodos())
         {
             FabricanteEquipamentoViewModel viewModelFabricante = new FabricanteEquipamentoViewModel(
                 fabricante.Id,

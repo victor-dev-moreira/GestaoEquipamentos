@@ -1,7 +1,7 @@
 using GestaoDeEquipamentos.WebApplication.Compartilhado.Dominio;
-namespace GestaoDeEquipamentos.WebApplication.Modulos.Fabricantes.Dominio;
+namespace GestaoDeEquipamentos.WebApplication.Modulos.Equipamentos.Dominio;
 
-public interface IRepositorioFabricante
+public interface IRepositorioEquipamento
 {
     void Cadastrar(Equipamento novoRegistro);
     bool Editar(int idSelecionado, Equipamento entidadeAtualizada);

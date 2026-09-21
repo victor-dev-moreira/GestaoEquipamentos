@@ -12,7 +12,7 @@ public sealed class RepositorioFabricanteEmSql : IRepositorioFabricante
         this.connectionString = connectionString;
     }
 
-    public void Cadastrar(Fabricante novoRegistro)
+    public void Cadastrar(Equipamento novoRegistro)
     {
         const string query =
             """
@@ -26,7 +26,7 @@ public sealed class RepositorioFabricanteEmSql : IRepositorioFabricante
         novoRegistro.Id = conexao.QuerySingle<int>(query, novoRegistro);
     }
 
-    public bool Editar(int idSelecionado, Fabricante entidadeAtualizada)
+    public bool Editar(int idSelecionado, Equipamento entidadeAtualizada)
     {
         const string query =
         """
@@ -61,7 +61,7 @@ public sealed class RepositorioFabricanteEmSql : IRepositorioFabricante
         return quantidadeRegistroExcluidos == 1;
     }
 
-    public Fabricante? SelecionarPorId(int idSelecionado)
+    public Equipamento? SelecionarPorId(int idSelecionado)
     {
         const string query =
             """
@@ -72,10 +72,10 @@ public sealed class RepositorioFabricanteEmSql : IRepositorioFabricante
         using SqlConnection conexao = new(connectionString);
 
         // Query = Consulta no banco
-        return conexao.QuerySingleOrDefault<Fabricante>(query, new { Id = idSelecionado });
+        return conexao.QuerySingleOrDefault<Equipamento>(query, new { Id = idSelecionado });
     }
 
-    public List<Fabricante> SelecionarTodos()
+    public List<Equipamento> SelecionarTodos()
     {
         const string query =
             """
@@ -86,6 +86,6 @@ public sealed class RepositorioFabricanteEmSql : IRepositorioFabricante
         using SqlConnection conexao = new(connectionString);
 
         // Query = Consulta no banco
-        return conexao.Query<Fabricante>(query).ToList();
+        return conexao.Query<Equipamento>(query).ToList();
     }
 }

@@ -18,7 +18,7 @@ public sealed class FabricanteController : Controller
     {
         List<ListarFabricanteViewModel> viewModels = new List<ListarFabricanteViewModel>();
 
-        foreach (Fabricante fabricante in repositorio.SelecionarTodos())
+        foreach (Equipamento fabricante in repositorio.SelecionarTodos())
         {
             viewModels.Add(new ListarFabricanteViewModel(
                 fabricante.Id,
@@ -43,7 +43,7 @@ public sealed class FabricanteController : Controller
         if (!ModelState.IsValid)
             return View(cadastrarVm);
 
-        Fabricante fabricante = new Fabricante(
+        Equipamento fabricante = new Equipamento(
             cadastrarVm.Nome ?? string.Empty,
             cadastrarVm.Email ?? string.Empty,
             cadastrarVm.Telefone ?? string.Empty
@@ -57,7 +57,7 @@ public sealed class FabricanteController : Controller
     [HttpGet]
     public ActionResult Editar(int id)
     {
-        Fabricante? fabricanteSelecionado = repositorio.SelecionarPorId(id);
+        Equipamento? fabricanteSelecionado = repositorio.SelecionarPorId(id);
 
         if (fabricanteSelecionado == null)
             return NotFound();
@@ -78,7 +78,7 @@ public sealed class FabricanteController : Controller
         if (!ModelState.IsValid)
             return View(editarVm);
 
-        Fabricante fabricanteAtualizado = new Fabricante(
+        Equipamento fabricanteAtualizado = new Equipamento(
             editarVm.Nome ?? string.Empty,
             editarVm.Email ?? string.Empty,
             editarVm.Telefone ?? string.Empty
@@ -95,7 +95,7 @@ public sealed class FabricanteController : Controller
     [HttpGet]
     public ActionResult Excluir(int id)
     {
-        Fabricante? fabricanteSelecionado = repositorio.SelecionarPorId(id);
+        Equipamento? fabricanteSelecionado = repositorio.SelecionarPorId(id);
 
         if (fabricanteSelecionado == null)
             return NotFound();

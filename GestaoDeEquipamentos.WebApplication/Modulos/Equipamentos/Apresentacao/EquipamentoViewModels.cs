@@ -7,7 +7,7 @@ public record ListarEquipamentoViewModel
     int Id,
     string Nome,
     decimal PrecoAquisicao,
-    Fabricante Fabricante,
+    Equipamento Fabricante,
     DateTime DataFabricacao
 );
 
